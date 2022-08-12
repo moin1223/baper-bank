@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header h1{
+            text-align: center;
+            margin-top: 100px;
+        }
+        .login-container{
+            display: flex;
+            justify-content: center;
+            
+        }
+        .login-item{
+            padding-left: 20px;
+            height: 200px;
+            background-color: aqua;
+            width:600px;
+        }
+        .login-item input{
+           text-align: center;
+           display: block;
+           margin-bottom: 10px;
+           border: none;
+        }
+        .login-item button {
+            border: none;
+            background-color: chocolate;
+            padding: 5px 10px;
+            color: aliceblue;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcom to my <span style="color: yellow;">Baap-Er-Bank</span>!!!</h1>
+
+    </header>
+    <main>
+        <div class="login-container">
+            <div class="login-item">
+                <h3>Please Login</h3>
+                <input id="email"  type="text" placeholder="your email">
+                <input id="password" type="text"  placeholder="password">
+                <button id="submit-btn">Submit</button>
+            </div>
+            
+        </div>
+    </main>
+    <script>
+        document.getElementById("submit-btn").addEventListener('click', function() {
+            const email = document.getElementById("email").value
+            const password = document.getElementById("password").value
+            if(email == "moin@gmail.com" && password == "123456"){
+                window.location.href = "banking.html";
+            }
+
+            
+        })
+
+    </script>
+
+    
+</body>
+</html>

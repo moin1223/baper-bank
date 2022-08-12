@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header h1 {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .blance-container {
+            display: flex;
+            justify-content: center
+        }
+
+        .balance {
+            height: 100px;
+            width: 200px;
+            background-color: cadetblue;
+            margin: 5px;
+            padding-left: 20px;
+        }
+
+        .balance h3 {
+            color: aliceblue;
+        }
+
+        .balance p {
+            color: aliceblue;
+        }
+
+        /* deposit */
+        .deposit-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .deposit {
+            background-color: blanchedalmond;
+            height: 150px;
+            width: 320px;
+            margin: 5px;
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+
+        .deposit input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .deposit button {
+            border: none;
+            background-color: chocolate;
+            padding: 5px 10px;
+            color: aliceblue;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Let's get some <span style="color: yellow;">Mooooney</span>!!!</h1>
+    </header>
+    <main>
+        <!-- balance and transaction -->
+        <section>
+            <div class="blance-container">
+                <div class="balance">
+                    <h3>Deposit</h3>
+                    <p>$ <span id="deposit-total">00</span></p>
+                </div>
+                <div class="balance">
+                    <h3>Withdraw</h3>
+                    <p>$<span id="withdraw-total">00</span></p>
+                </div>
+                <div class="balance">
+                    <h3>Balance</h3>
+                    <p>$ <span id="balance-total">00</span></p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Deposit and  widraw -->
+        <section>
+            <div class="deposit-wrapper">
+                <div class="deposit">
+                    <h3>Please Deposit</h3>
+                    <input id="deposit-input" type="text" placeholder="$amount you want to deposit">
+                    <button id="deposit-btn">Deposit</button>
+                </div>
+
+                <div class="deposit">
+                    <h3>Please Withdraw</h3>
+                    <input id="withdraw-input" type="text" placeholder="$amount you want to deposit">
+                    <button id="withdraw-btn">withdraw</button>
+                </div>
+
+        </section>
+    </main>
+    <script>
+        // deposit event handle
+        document.getElementById("deposit-btn").addEventListener('click', function () {
+            const Deposit = document.getElementById("deposit-input")
+            const newDepositText = Deposit.value
+            const newDepositAmount = parseFloat(newDepositText)
+            const DepositText = document.getElementById("deposit-total")
+            const priviousDepositText = DepositText.innerText
+            const priviousDepositAmount = parseFloat(priviousDepositText)
+            const totalDepositAmount = newDepositAmount + priviousDepositAmount;
+            DepositText.innerText = totalDepositAmount
+           // Balance
+           const BalanceText = document.getElementById("balance-total")
+           const priviousBalanceText = BalanceText.innerText
+           const priviousBalanceAmount = parseFloat(priviousBalanceText)
+           const totalBalance = newDepositAmount + priviousBalanceAmount 
+           BalanceText.innerText = totalBalance
+
+            // cleare input
+            Deposit.value = ''
+            
+        })
+
+             // withdraw event handle
+          document.getElementById("withdraw-btn").addEventListener('click', function() {
+          
+       
+                const withdrawInput = document.getElementById("withdraw-input")
+                const withdrawInputText = withdrawInput.value
+                const withdrawInputAmount = parseFloat(withdrawInputText)
+
+                const previusWithDraw = document.getElementById("withdraw-total")
+                const previusWithdrawText =  previusWithDraw.innerText
+                const previusWithdrawAmount = parseFloat(previusWithdrawText)
+                const totalwithdraw = withdrawInputAmount + previusWithdrawAmount
+                previusWithDraw.innerText = totalwithdraw
+                withdrawInput.value =''
+                 // Balance
+           const BalanceText = document.getElementById("balance-total")
+           const priviousBalanceText = BalanceText.innerText
+           const priviousBalanceAmount = parseFloat(priviousBalanceText)
+           const totalBalance = priviousBalanceAmount - totalwithdraw  
+           BalanceText.innerText = totalBalance
+        
+
+
+             })
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
