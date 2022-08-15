@@ -8,48 +8,64 @@
             inputValue.value = ''
             return newInputValue
         }
-        // get text element by id
-        function getTextElementById(elementID) {
-            const textElement = document.getElementById(elementID)
-            const textElementString = textElement.innerText
+        // updatetotalfild
+        function updateTotalFild(elementId, previosAmount) {
+            const totalTextElement = document.getElementById(elementId)
+            const textElementString =  totalTextElement.innerText
             const textElementValue = parseFloat(textElementString)
-            return textElementValue
+            totalTextElement.innerText = textElementValue + previosAmount;
+         
         }
 
-        // set text element by id
+        //get current blance
+        function getCurrentBalance(){
+            const textElement = document.getElementById("balance-total")
+            const textElementString =   textElement.innerText
+            const textElementValue = parseFloat(textElementString)
+            return textElementValue
 
-        function setElementById(elementId, newValue) {
-            const textElement = document.getElementById(elementId)
-            textElement.innerText = newValue
+        }
+
+        // updateTotalBalanc
+
+        function updateTotalBalance(newAmount,isAdd) {
+            const textElement = document.getElementById("balance-total")
+            // const textElementString =   textElement.innerText
+            // const textElementValue = parseFloat(textElementString)
+             const textElementValue = getCurrentBalance()
+            if(isAdd == true){
+              textElement.innerText = textElementValue + newAmount;
+
+            }
+            else{
+                textElement.innerText = textElementValue - newAmount;
+
+            }  
+        
         }
         
         ///////////////////////////////////
 
 
         // deposit event handle
-        document.getElementById("deposit-btn").addEventListener('click', function () {
+         document.getElementById("deposit-btn").addEventListener('click', function () {
             const newDepositAmount = getInputFildValueByID("deposit-input")
-            const priviousDepositAmount = getTextElementById("deposit-total")
-            const totalDepositAmount = newDepositAmount + priviousDepositAmount;
-            setElementById("deposit-total", totalDepositAmount)
-            // Balance
-            const priviousBalanceAmount = getTextElementById("balance-total")
-            const totalBalance = newDepositAmount + priviousBalanceAmount
-            setElementById("balance-total", totalDepositAmount)
+           if(newDepositAmount >0){
+            updateTotalFild("deposit-total", newDepositAmount )
+            updateTotalBalance(newDepositAmount,true)
+           }
 
         })
 
         // withdraw event handle
         document.getElementById("withdraw-btn").addEventListener('click', function () {
 
-            const withdrawInputAmount = getInputFildValueByID("withdraw-input")
-            const previusWithdrawAmount = getTextElementById("withdraw-total")
-            const totalwithdraw = withdrawInputAmount + previusWithdrawAmount
-            setElementById("withdraw-total", totalwithdraw)
+            const newwithdrawAmount = getInputFildValueByID("withdraw-input")
+            const currentBlance = getCurrentBalance()
+            if(newwithdrawAmount>0 && currentBlance > newwithdrawAmount){
+                updateTotalFild("withdraw-total",newwithdrawAmount)
+                updateTotalBalance(newwithdrawAmount,false)
 
-            // Balance
-            const priviousBalanceAmount = getTextElementById("balance-total")
-            const totalBalance = priviousBalanceAmount - totalwithdraw
-            setElementById("balance-total", totalBalance)
-
+            }
+        
         })
