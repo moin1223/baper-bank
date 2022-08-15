@@ -105,61 +105,58 @@
         </section>
     </main>
     <script>
-        // common
-
-        // get Input value by id
-        function getInputFildValueByID(inputFildID) {
-            const inputValue = document.getElementById(inputFildID)
-            const newInputText = inputValue.value
-            const newInputValue = parseFloat(newInputText)
-            inputValue.value = ''
-            return newInputValue
-        }
-        // get text element by id
-        function getTextElementById(elementID) {
-            const textElement = document.getElementById(elementID)
-            const textElementString = textElement.innerText
-            const textElementValue = parseFloat(textElementString)
-            return textElementValue
-        }
-
-        // set text element by id
-
-        function setElementById(elementId, newValue) {
-            const textElement = document.getElementById(elementId)
-            textElement.innerText = newValue
-        }
-        
-        ///////////////////////////////////
-
-
         // deposit event handle
         document.getElementById("deposit-btn").addEventListener('click', function () {
-            const newDepositAmount = getInputFildValueByID("deposit-input")
-            const priviousDepositAmount = getTextElementById("deposit-total")
+            const Deposit = document.getElementById("deposit-input")
+            const newDepositText = Deposit.value
+            const newDepositAmount = parseFloat(newDepositText)
+            const DepositText = document.getElementById("deposit-total")
+            const priviousDepositText = DepositText.innerText
+            const priviousDepositAmount = parseFloat(priviousDepositText)
             const totalDepositAmount = newDepositAmount + priviousDepositAmount;
-            setElementById("deposit-total", totalDepositAmount)
-            // Balance
-            const priviousBalanceAmount = getTextElementById("balance-total")
-            const totalBalance = newDepositAmount + priviousBalanceAmount
-            setElementById("balance-total", totalDepositAmount)
+            DepositText.innerText = totalDepositAmount
+           // Balance
+           const BalanceText = document.getElementById("balance-total")
+           const priviousBalanceText = BalanceText.innerText
+           const priviousBalanceAmount = parseFloat(priviousBalanceText)
+           const totalBalance = newDepositAmount + priviousBalanceAmount 
+           BalanceText.innerText = totalBalance
 
+            // cleare input
+            Deposit.value = ''
+            
         })
 
-        // withdraw event handle
-        document.getElementById("withdraw-btn").addEventListener('click', function () {
+             // withdraw event handle
+          document.getElementById("withdraw-btn").addEventListener('click', function() {
+          
+       
+                const withdrawInput = document.getElementById("withdraw-input")
+                const withdrawInputText = withdrawInput.value
+                const withdrawInputAmount = parseFloat(withdrawInputText)
 
-            const withdrawInputAmount = getInputFildValueByID("withdraw-input")
-            const previusWithdrawAmount = getTextElementById("withdraw-total")
-            const totalwithdraw = withdrawInputAmount + previusWithdrawAmount
-            setElementById("withdraw-total", totalwithdraw)
+                const previusWithDraw = document.getElementById("withdraw-total")
+                const previusWithdrawText =  previusWithDraw.innerText
+                const previusWithdrawAmount = parseFloat(previusWithdrawText)
+                const totalwithdraw = withdrawInputAmount + previusWithdrawAmount
+                previusWithDraw.innerText = totalwithdraw
+                withdrawInput.value =''
+                 // Balance
+           const BalanceText = document.getElementById("balance-total")
+           const priviousBalanceText = BalanceText.innerText
+           const priviousBalanceAmount = parseFloat(priviousBalanceText)
+           const totalBalance = priviousBalanceAmount - totalwithdraw  
+           BalanceText.innerText = totalBalance
+        
 
-            // Balance
-            const priviousBalanceAmount = getTextElementById("balance-total")
-            const totalBalance = priviousBalanceAmount - totalwithdraw
-            setElementById("balance-total", totalBalance)
 
-        })
+             })
+
+
+
+
+
+
 
 
     </script>
